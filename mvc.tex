@@ -660,7 +660,75 @@ Using this formula, the tangent line to the curve $f(x)$ at $a$ is (looks famili
 
 \subsection{Directional Derivatives}
 
+The directional derivative is a measure of the rate of change of a function along a certain direction vector.
+
+The directional derivative of a function $f:\mathbb R^n\to\mathbb R$ with respect to a unit vector $\mathbf u\in\mathbb R^n$ is:
+\begin{equation*}
+    D_\mathbf u f(\mathbf x)=\lim_{h\to0}\frac{f(\mathbf x+\mathbf u)-f(\mathbf x)}{h}
+\end{equation*}
+If $\mathbf u=(u_1,u_2,\ldots,u_n)$ and $\lVert \mathbf u \rVert =1$, the directional derivative with respect to $\mathbf u$ is:
+\begin{equation*}
+	D_\mathbf u f(\mathbf x)
+	=\sum_{i=1}^{n} \diffp{f}{x_i}u_i
+	=\nabla f(\mathbf x)\cdot \mathbf u
+\end{equation*}
+where $\nabla f$ is the gradient. For $f:\mathbb R^2\to\mathbb R$ and $\mathbf u=(a,b)$:
+\begin{equation*}
+	D_\mathbf u f(x,y)
+	=a\diffp fx+b\diffp fy
+	=af_x(x,y)+bf_y(x,y)
+\end{equation*}
+
 \subsection{Gradient}
+
+For a function $f:\mathbb R^n\to\mathbb R$, the gradient $\nabla f:\mathbb R^n\to\mathbb R^n$ is defined as:
+\begin{equation*}
+    \nabla f(x_1,x_2,\ldots,x_n)
+	=\left( \diffp{f}{x_1},\diffp{f}{x_2},\ldots,\diffp{f}{x_n} \right)
+\end{equation*}
+In two dimensions:
+\begin{equation*}
+    \nabla f(x,y)=(f_x(x,y),f_y(x,y))
+\end{equation*}
+The gradient at a point is the direction of greatest change at that point. That is, if $\mathbf u\in\mathbb R^n$, $D_\mathbf u f$ is greatest when $\mathbf u$ has the same direction as $\nabla f(\mathbf x)$.
+
+For some value $c\in\mathbb R$, the level curve of value $c$ is the curve defined by $f(\mathbf x)=c$. At some point $\mathbf x_1$, the gradient at that point $\nabla f(\mathbf x_1)$ is always perpendicular to the level curve of value $f(\mathbf x_1)$ when graphed on the same plane.
+
+\subsection{Relative Extrema}
+
+$\mathbf x_1$ is a critical point of $f:\mathbb R^n\to\mathbb R$ if $\nabla f(\mathbf x_1)=0$ or it does not exist.
+
+To determine if $\mathbf x_1$ is a local minimum, local maximum or a saddle point, calculate the Hessian matrix:
+\begin{equation*}
+    H=\begin{bmatrix}
+		f_{xx}(\mathbf x_1) &
+		f_{xy}(\mathbf x_1) \\
+		f_{yx}(\mathbf x_1) &
+		f_{yy}(\mathbf x_1)
+    \end{bmatrix}
+\end{equation*}
+The Second Partials Test:
+\begin{itemize}
+	\item If $\det H>0$, $\mathbf x_1$ is a local minimum if $f_{xx}(\mathbf x_1)>0$ and a local maximum if $f_{xx}(\mathbf x_1)<0$.
+	\item If $\det H<0$, $\mathbf x_1$ is a saddle point.
+	\item If $\det H=0$, the test is inconclusive.
+\end{itemize}
+A saddle point is one in which some paths passing through the point results in a local minimum, and some other paths result in a local maximum.
+
+\subsection{Chain Rule}
+
+For one independent variable: if $x=g(t),y=g(t)$ and $z=f(x,y)=f(g(t),h(t))$:
+\begin{equation*}
+    \diff zt=\diffp zx\diff xt+\diffp zy\diff yt
+\end{equation*}
+For two independent variables: if $x=g(u,v),y=h(u,v)$ and $z=f(x,y)=f(g(u,v),h(u,v))$:
+\begin{equation*}
+    \diffp zu=\diffp zx\diffp xu+\diffp zy\diffp yu 
+	\qquad\qquad
+    \diffp zv=\diffp zx\diffp xv+\diffp zy\diffp yv
+\end{equation*}
+
+\subsection{Lagrange Multipliers}
 
 \end{document}
 
