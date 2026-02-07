@@ -645,7 +645,10 @@ Let $f:\mathbb R^n\to\mathbb R$ be a function with variables $x_1,x_2,\ldots,x_n
 \end{equation*}
 $f$ must be differentiable at a point if its partial derivatives are continuous at that point. But this is not a necessary condition (i.e. there are differentiable functions without continuous partial derivatives).
 
-\subsection{Tangent Plane}
+Clairaut's theorem states that if a function is defined on a point $(a,b)$ and its second partial derivatives $f_{xy}$ and $f_{yx}$ are both continuous, then $f_{xy}(a,b)=f_{yx}(a,b)$.
+
+\subsection{Tangent Plane and Normal Line}
+
 The tangent plane to the curve of $f(x,y,z)$ at (a,b) is:
 \begin{equation*}
     z=f_x(a,b)(x-a)+f_y(a,b)(y-b)+f(a,b)
@@ -657,6 +660,31 @@ Using this formula, the tangent line to the curve $f(x)$ at $a$ is (looks famili
     y=f_x(a)(x-a)+f(a)
 	=f'(a)(x-a)+f(a)
 \end{equation*}
+
+The normal line at a given point is the line orthogonal to the tangent plane and passing through said point. The normal line to a surface defined by $F(x,y,z)=0$ at $(x_0,y_0,z_0)$ is:
+\begin{align*}
+	x&=x_0+F_x(x_0,y_0,z_0)t \\
+	y&=y_0+F_y(x_0,y_0,z_0)t \\
+	z&=z_0+F_z(x_0,y_0,z_0)t
+\end{align*}
+To calculate the tangent plane to $F(x,y,z)$ at $(x_0,y_0,z_0)$, first observe that the gradient:
+\begin{equation*}
+    \nabla F(x_0,y_0,z_0)=(F_x(x_0,y_0,z_0),F_y(x_0,y_0,z_0),F_z(x_0,y_0,z_0))
+\end{equation*}
+is parallel to the normal line, which is orthogonal to the tangent plane. Therefore, the tangent plane is given by:
+\begin{equation*}
+	(x-x_0,y-y_0,z-z_0)\cdot \nabla F=0
+\end{equation*}
+To calculate the normal line to a surface given by $z=f(x,y)$, express it as:
+\begin{equation*}
+    F(x,y,z)=f(x,y)-z=0
+\end{equation*}
+Notice that $F_z(x,y,z)=-1$. The normal line to this surface at $(x_0,y_0,z_0)$ where $z_0=f(x_0,y_0)$ is:
+\begin{alignat*}{2}
+	x&=x_0+F_x(x_0,y_0,z_0)t&&=x_0+f_x(x_0,y_0)t \\
+	y&=y_0+F_y(x_0,y_0,z_0)t&&=y_0+f_y(x_0,y_0)t \\
+	z&=z_0+F_z(x_0,y_0,z_0)t&&=z_0-t
+\end{alignat*}
 
 \subsection{Directional Derivatives}
 
@@ -729,6 +757,19 @@ For two independent variables: if $x=g(u,v),y=h(u,v)$ and $z=f(x,y)=f(g(u,v),h(u
 \end{equation*}
 
 \subsection{Lagrange Multipliers}
+
+We can find the absolute/relative extrema inside a boundary using by identifying points where $\nabla f=0$. Lagrange Multipliers will find relative extrema on the boundary.
+
+Let $f,g:\mathbb R^n\to\mathbb R$ and $k\in\mathbb R$. We find the relative extrema of $f$ on the boundary $g(\mathbf x)=k$. Potential optimal points $\mathbb x_1$ on the boundary are where the gradients of $f$ and $g$ are scalar multiples, that is:
+\begin{align*}
+	\nabla f(\mathbf x_1)&=\lambda \nabla g(\mathbf x_1) \\
+	g(\mathbf x_1)&=k
+\end{align*}
+where $\lambda\in\mathbb R$, and is called the Lagrange Multiplier. Then, absolute minimum/maximum on the boundary can be found by comparing the values of $f(\mathbf x_1)$ for all candidate points.
+
+To find the absolute minimum/maximum of a function within a boundary, find candidate points on the boundary with Lagrange Multipliers, and candidate points inside the boundary where $\nabla f(\mathbf x_1)=0$, and compare.
+
+\section{Integration}
 
 \end{document}
 
