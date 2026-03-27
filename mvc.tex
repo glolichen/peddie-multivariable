@@ -771,5 +771,66 @@ To find the absolute minimum/maximum of a function within a boundary, find candi
 
 \section{Integration}
 
+\subsection{Double Integral}
+
+The double integral:
+\begin{equation*}
+    \iint_R f(x,y)\,\mathrm{d}A
+\end{equation*}
+represents the signed volume of the solid formed between the region $R$ at $z=0$ and the surface $z=f(x,y)$. $R$ represents any region, including but nor limited to rectangles.
+
+\subsection{Fubini's Theorem}
+
+Let $R$ be a rectangular region defined by:
+\begin{equation*}
+    a\leq x\leq b, c\leq y\leq b
+\end{equation*}
+If $f$ is continuous on $R$, then the bounds of the double integral can be switched.
+\begin{equation*}
+    \iint_R f(x,y) \,\mathrm{d}A
+    =\int_{a}^{b}\int_{c}^{d}f(x,y)\,\mathrm{d}y\,\mathrm{d}x
+    =\int_{c}^{d}\int_{a}^{b}f(x,y)\,\mathrm{d}x\,\mathrm{d}y
+\end{equation*}
+
+\subsection{Average Value}
+
+The average value of a function on a region $R$ is, where $A_R$ is the area of $R$:
+\begin{equation*}
+	\text{Average}=\frac{1}{A_R}\iint_R f(x,y) \,\mathrm{d}A
+\end{equation*}
+
+\subsection{Separable Multiple Integrals}
+
+On a rectangular region $[a,b]\times[c,d]$ (meaning $a\leq x\leq b$ and $c\leq y\leq d$), any integral whose integrand can be expressed as a product of single variable functions equals:
+\begin{equation*}
+	\int_{a}^{b}\int_{c}^{d}f(x)g(y)\,\mathrm{d}y\,\mathrm{d}x
+	=\int_{a}^{b}f(x)\,\mathrm{d}x \int_{c}^{d}g(y)\,\mathrm{d}y
+\end{equation*}
+This can be generalized for any number of integrals.
+
+\subsection{Surface Area}
+
+The area of the surface $z=f(x,y)$ over a reigon $R$ where both partial derivatives $f_x,f_y$ are continuous is:
+\begin{equation*}
+    S=\iint_R \sqrt{1+f_x(x,y)^2+f_y(x,y)^2}\,\mathrm{d}A
+\end{equation*}
+
+\subsection{Polar Coordinates}
+
+A function $f(x,y)$ is equivalent to a polar function $g(r,\theta)$. If we wish to integrate $f$ over the region $R$, which is such that $r_1(\theta)\leq r\leq r_2(\theta)$ and $a\leq \theta\leq b$:
+\begin{equation*}
+    \iint_R f(x,y) \,\mathrm{d}A
+	=\int_{a}^{b}\int_{r_1(\theta)}^{r_2(\theta)}g(r,\theta)\, r\,\mathrm{d}r\,\mathrm{d}\theta
+\end{equation*}
+Note that when converting to polar coordinates, $\mathrm{d}A=r \,\mathrm{d}r \,\mathrm{d}\theta=r \,\mathrm{d}\theta \,\mathrm{d}r$.
+
+\subsection{Change of Coordinates}
+
+Jacobian
+
+\subsection{Spherical Coordinates}
+
+\subsection{Line Integrals}
+
 \end{document}
 
