@@ -53,6 +53,7 @@
 \setlength{\parskip}{2ex plus 0.5ex minus 0.2ex}
 \maketitle
 
+\setcounter{tocdepth}{1}
 \tableofcontents
 
 \section{Vectors}
@@ -283,7 +284,7 @@ We know the value of $a,b,c,x_0,y_0,z_0$ for both equations. There are two varia
 
 \subsection{Distance between Lines}
 
-First find two parallel planes which contains each line, and find the distance between the parallel planes. This is the distance betwene lines.
+First find two parallel planes which contains each line, and find the distance between the parallel planes. This is the distance between lines.
 
 The normal vector to the parallel planes is the cross product of the direction vectors of the two lines. Then translate the planes so that they contain the lines.
 
@@ -610,7 +611,7 @@ A multivariable limit is denoted:
 \end{equation*}
 where $x$ and $y$ approach $a$ and $b$ at the same time. For the limit to exist, approaching $(a,b)$ from all (infinitely many) paths must evaluate to the same value. In 2 dimensions, there are only 2 paths; approaching from the left and the right.
 
-To show a limit does not exist at a given point, show that approacing the point from two different paths produces different values. This can be done by setting $y$ to a function of $x$, or vice versa.
+To show a limit does not exist at a given point, show that approaching the point from two different paths produces different values. This can be done by setting $y$ to a function of $x$, or vice versa.
 
 For limits to the origin, we can evaluate the limit by changing $f(x,y)$ to cylindrical/polar coordinates $g(r,\theta)$:
 \begin{equation*}
@@ -810,7 +811,7 @@ This can be generalized for any number of integrals.
 
 \subsection{Surface Area}
 
-The area of the surface $z=f(x,y)$ over a reigon $R$ where both partial derivatives $f_x,f_y$ are continuous is:
+The area of the surface $z=f(x,y)$ over a region $R$ where both partial derivatives $f_x,f_y$ are continuous is:
 \begin{equation*}
     S=\iint_R \sqrt{1+f_x(x,y)^2+f_y(x,y)^2}\,\mathrm{d}A
 \end{equation*}
@@ -826,11 +827,111 @@ Note that when converting to polar coordinates, $\mathrm{d}A=r \,\mathrm{d}r \,\
 
 \subsection{Change of Coordinates}
 
-Jacobian
+\begin{equation*}
+    \iint_R f(x,y) \,\mathrm{d}A
+	=\iint_R f(\mathbf G(u,v)) \det(\mathbf J_\mathbf G) \,\mathrm{d}\overline A
+\end{equation*}
+where $\mathbf G:\mathbb R^2\to\mathbb R^2$ applies a change of coordinates:
+\begin{equation*}
+	(x,y)=\mathbf G(u,v)
+\end{equation*}
+In other words, where the function $\mathbf G$ maps the new coordinate system $(u,v)$ onto the existing $(x,y)$ system.
+
+To apply the new coordinate system in an integral, the area differential $\mathrm{d}A$ must be scaled by the \textbf{Jacobian determinant} of $\mathbf G$, which is the determinant of the Jacobian matrix. If $\mathbf G(u,v)=(g_1(u,v), g_2(u,v))$:
+\begin{equation*}
+    \mathbf J_\mathbf G
+	=\left[\begin{matrix}
+		\displaystyle \diffp{g_1}{u} &
+		\displaystyle \diffp{g_1}{v} \\[10pt]
+		\displaystyle \diffp{g_2}{u} &
+		\displaystyle \diffp{g_2}{v}
+	\end{matrix}\right]
+	\qquad
+    \det(\mathbf J_\mathbf G)
+	=\left|\begin{matrix}
+		\displaystyle \diffp{g_1}{u} &
+		\displaystyle \diffp{g_1}{v} \\[10pt]
+		\displaystyle \diffp{g_2}{u} &
+		\displaystyle \diffp{g_2}{v}
+	\end{matrix}\right|
+\end{equation*}
+The area differential for the $(x,y)$ coordinate system $\mathrm{d}A$ in terms of the new coordinate system $\mathrm{d}\overline A$ is:
+\begin{equation*}
+	\mathrm{d}A 
+	=\det(\mathrm J_\mathrm G) \,\mathrm{d}\overline A
+\end{equation*}
 
 \subsection{Spherical Coordinates}
+Spherical coordinates to cartesian:
+\begin{align*}
+	x&=\rho \sin\varphi \cos\theta \\
+	y&=\rho \sin\varphi \sin\theta \\
+	z&=\rho \cos\varphi
+\end{align*}
+Cartesian coordinates to spherical:
+\begin{align*}
+	\rho^2&=x^2+y^2+z^2 \\
+	\tan\theta&=\frac{y}{x} \\
+	\varphi&=\arccos\left(\frac{z}{\sqrt{x^2+y^2+z^2}}\right)
+\end{align*}
+The Jacobian of $(x,y,z)$ in terms of the spherical coordinates is:
+\begin{equation*}
+	\mathbf J
+	=\begin{vmatrix}
+		\nabla x \\
+		\nabla y \\
+		\nabla z
+	\end{vmatrix}
+	=\mathbf J \begin{bmatrix}
+		\rho \sin\varphi \cos\theta \\
+		\rho \sin\varphi \sin\theta \\
+		\rho \cos\varphi
+	\end{bmatrix}
+	=\rho^2\sin\varphi
+\end{equation*}
+To convert an integral in cartesian coordinates to one in spherical coordinates:
+\begin{equation*}
+    \iiint_R f(x,y,z) \,\mathrm{d}V
+	=\iiint_R f(\rho, \theta, \varphi)(\rho^2\sin\varphi) \,\mathrm{d}r \,\mathrm{d}\theta \,\mathrm{d}\varphi
+\end{equation*}
+Alternatively:
+\begin{equation*}
+    \mathrm{d}V=\rho^2\sin\varphi\,\mathrm{d}r\,\mathrm{d}\theta\,\mathrm{d}\varphi
+\end{equation*}
+To integrate over a full sphere, use $0\leq \theta\leq 2\pi, 0\leq \varphi\leq \pi$. Volume is counted twice if $0\leq\varphi\leq 2\pi$.
 
 \subsection{Line Integrals}
+
+A line integral:
+\begin{equation*}
+    \int_C (M \,\mathrm{d}x+N \,\mathrm{d}y)
+\end{equation*}
+is independent of path if there exists a function $f$ such that $\nabla f=(M,N)$. Then the integral on any path from $(x_1,y_1)$ to $(x_2,y_2)$ equals:
+\begin{equation*}
+    \int_C (M \,\mathrm{d}x+N \,\mathrm{d}y)
+	=f(x_2,y_2)-f(x_1,y_1)
+\end{equation*}
+More generally, if $\nabla f=(M_1,\ldots, M_n)$, then the integral on any path from $\mathbf x_1$ to $\mathbf x_2$ is:
+\begin{equation*}
+    \int_C \sum_i M_i \,\mathrm{d}x_i
+	=f(\mathbf x_2)-f(\mathbf x_1)
+\end{equation*}
+A line integral is often evaluated along a path given by $r:\mathbb R\to\mathbb R^n$, where the parameter of $r$ can be thought to represent ``time.'' The differential is in terms of the arc length parameter:
+\begin{equation*}
+    \mathrm{d}s=\lVert r'(t) \rVert \,\mathrm{d}t
+\end{equation*}
+The line integral:
+\begin{equation*}
+    \int_C f(x,y) \,\mathrm{d}s
+\end{equation*}
+represents the integral of the function $f$ over the curve $C$, which in this case is given by $r(t)$ over $a\leq t\leq b$. If you pulled the curve over which the integral is evaluated onto a plane, this is the signed area under/above $f$.
+
+If $r(t)=(x(t), y(t))$, the line integral over the path given by $r(t)$ where $a\leq t\leq b$ is:
+\begin{align*}
+    \int_C f(x,y) \,\mathrm{d}s
+	&=\int_C f(x,y) \lVert r'(t) \rVert dt \\
+	&=\int_a^b f(x(t),y(t)) \lVert (x'(t), y'(t)) \rVert \mathrm{d}t
+\end{align*}
 
 \end{document}
 
