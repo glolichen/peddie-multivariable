@@ -5,6 +5,7 @@
 \usepackage{amsmath, amsfonts, amsthm, amssymb}
 \usepackage{graphicx, float}
 \usepackage{suffix}
+\usepackage{esint}
 \usepackage{diffcoeff}
 \usepackage{pdfpages}
 \usepackage{multicol}
@@ -38,6 +39,9 @@
 \WithSuffix\newcommand\remark*[1]{\begin{tcolorbox}[colback=black!5!white,colframe=black!75!black,parbox=false] #1 \end{tcolorbox}}
 
 \newcommand*{\deriv}[1][x]{\ensuremath{\dfrac{\mathrm{d}}{\mathrm{d}#1}}}
+
+\DeclareMathOperator{\curl}{curl}
+\DeclareMathOperator{\diverge}{div}
 
 
 \title{\vspace*{-40pt}\textsc{Multivariable Calculus Notes}}
@@ -932,6 +936,75 @@ If $r(t)=(x(t), y(t))$, the line integral over the path given by $r(t)$ where $a
 	&=\int_C f(x,y) \lVert r'(t) \rVert dt \\
 	&=\int_a^b f(x(t),y(t)) \lVert (x'(t), y'(t)) \rVert \mathrm{d}t
 \end{align*}
+
+\section{Vector Calculus}
+
+A vector field is a function $F:\mathbb R^n\to\mathbb R^n$.
+
+\subsection{Green's Theorem}
+
+Let $F:\mathbb R^2\to\mathbb R^2$ be a vector field where $F(x,y)=(M(x,y),N(x,y))$. The scalar curl of $F$ is:
+\begin{equation*}
+	\diffp Nx-\diffp My
+\end{equation*}
+Green's theorem states that the line integral over a closed curve $C$ equals the integral of the scalar curls at all points inside the curve (area integral over $R$). Note that $\mathrm{d}r=(\mathrm{d}x,\mathrm{d}y)$.
+\begin{equation*}
+    \oint_C F\cdot \mathrm{d}r
+	=\oint_C \left( M \,\mathrm{d}x+N \,\mathrm{d}y \right)
+	=\iint_R \left( \diffp Nx-\diffp My \right) \mathrm{d}A
+\end{equation*}
+
+\subsection{Divergence and Curl}
+
+The divergence of a vector field $F(x,y,z)=(M,N,P)$ is defined as:
+\begin{equation*}
+	\diverge F
+	=\nabla \cdot F
+	=\diffp Mx+\diffp Ny+\diffp Pz
+\end{equation*}
+The curl of $F$ is defined as:
+\begin{equation*}
+    \curl F
+	=\nabla \times F
+	=\begin{vmatrix}
+		\hat i & \hat j & \hat k \\
+		\displaystyle\diffp{}x & \displaystyle\diffp{}y & \displaystyle\diffp{}z \\
+		M & N & P
+	\end{vmatrix}
+	=\left( \diffp Py-\diffp Nz, \diffp Mz-\diffp Px, \diffp Nx-\diffp My \right)
+\end{equation*}
+Note that $\diverge F$ is a scalar while $\curl F$ is a vector in $\mathbb R^3$.
+
+\subsection{Stokes' Theorem}
+
+The line integral of $F(x,y,z)=(M,N,P)$ over a closed curve $C$ equals the dot product of $\curl F$ and a unit vector $n$ over the area enclosed by $C$. $n$ is a unit vector oriented in a right hand fashion to the direction of travel defined by $C$, and is orthogonal to the surface created by $F$.
+\begin{equation*}
+    \oint_C F\cdot \mathrm{d}r
+	=\iint_R (\curl F)\cdot n \,\mathrm{d}S
+\end{equation*}
+where $\mathrm{d}S$ is the surface area differential. If the surface over which the RHS is calculated can be expressed as $z=g(x,y)$:
+\begin{equation*}
+    \mathrm{d}S=\sqrt{(g_x)^2+(g_y)^2+1}\,\mathrm{d}A
+\end{equation*}
+
+\subsection{Divergence Theorem}
+
+\textbf{In two dimensions.} Let $F(x,y)=(M,N)$ be a vector field, and let $C$ be a closed loop. Let $n$ represent the unit vector orthogonal to $C$ at a certain point (the current location of the integral) and facing out of the curve.
+\begin{equation*}
+    \oint_C F\cdot n \,\mathrm{d}s
+	=\iint_R \left( \diffp Mx+\diffp Ny \right)\mathrm{d}A
+	=\iint_R \diverge F \,\mathrm{d}A
+\end{equation*}
+where $\mathrm{d}s$ is the arc length parameter. If $C$ is defined by a vector function $r(t)$ where $r:\mathbb R\to\mathbb R^2$, $\mathrm{d}s=\lVert r'(t) \rVert \,\mathrm{d}t$. $R$ is the area enclosed by the curve $C$. For the theorem to apply, $\diverge F$ must be defined at all points in $R$.
+
+This value is also known as the \textbf{flux}.
+
+\textbf{In three dimensions}. Let $F(x,y,z)=(M,N,P)$. The flux over a boundary surface $S$ where $n$ is the outward pointing unit vector from the surface $S$ is:
+\begin{equation*}
+    \oiint_S F\cdot n \,\mathrm{d}S
+	=\iiint_Q \diverge F \,\mathrm{d}V
+\end{equation*}
+where $Q$ is the volume enclosed inside the surface $S$ and $\mathrm{d}S$ is the surface area differential.
 
 \end{document}
 
